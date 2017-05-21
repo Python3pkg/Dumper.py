@@ -312,8 +312,8 @@ import sys, string
 from types import *
 
 if sys.version < '3':
-    integer_types = (int, long,)
-    string_types = (basestring,)
+    integer_types = (int, int,)
+    string_types = (str,)
     split = string.split
 else:
     integer_types = (int,)
@@ -434,7 +434,7 @@ class Dumper:
             self.out.write(line.decode("utf-8"))
         except AttributeError:
             self.out.write(line) # python 3
-        self.out.write(u"\n")
+        self.out.write("\n")
         
     def _write (self, text):
         try:
@@ -699,12 +699,12 @@ if __name__ == "__main__":
           'k2': l1,
           'k2': l2}
 
-    print("a list: ", dumps (l1), "; a tuple: ", dumps (t1))
+    print(("a list: ", dumps (l1), "; a tuple: ", dumps (t1)))
     print("a complex list: ")
     dump (l2)
     dump (d1)
     print("same dict, printed from dumps(): ")
-    print(dumps(d1))
+    print((dumps(d1)))
     dump (19)
     dump ("\nMy birth year!\n")
 
@@ -716,7 +716,7 @@ if __name__ == "__main__":
     l[1][2] = tuple (range (11))
     dumper.dump (l)
     dumper.max_depth = None
-    print(dumper.max_depth)
+    print((dumper.max_depth))
     
     class Foo: pass
     class Bar: pass
